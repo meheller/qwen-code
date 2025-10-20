@@ -25,7 +25,9 @@ export function createMockWorkspaceContext(
     isPathWithinWorkspace: vi
       .fn()
       .mockImplementation((path: string) =>
-        allDirs.some((dir) => path.startsWith(dir)),
+        allDirs.some(
+          (dir) => path === dir || path.startsWith(`${dir}/`),
+        ),
       ),
   } as unknown as WorkspaceContext;
 
